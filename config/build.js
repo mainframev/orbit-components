@@ -6,9 +6,8 @@ const { JSDOM } = require("jsdom");
 const capitalize = require("capitalize");
 const camelcase = require("camelcase");
 const mkdirp = require("mkdirp");
-const SVGO = require("svgo");
 const glob = require("glob");
-const svg2png = require("svg2png");
+const svgr = require("@svgr/core").default;
 
 const files = glob.sync("src/icons/**/*.svg");
 const names = files.map(inputFileName => {
@@ -26,47 +25,44 @@ const names = files.map(inputFileName => {
 
 const componentPath = path.join(__dirname, "..", "src", "icons");
 mkdirp(componentPath);
-const pngPath = path.join(__dirname, "..", "src", "icons", "png");
-mkdirp(pngPath);
-const relativePngPath = pngPath.substring(path.join(__dirname, "..").length);
-const svgo = new SVGO();
 
-names.forEach(async ({ inputFileName, outputComponentFileName, functionName }) => {
-  const dom = await JSDOM.fromFile(inputFileName);
-  const shapes = dom.window.document.querySelector("svg").innerHTML;
-  const svg = `<svg viewBox="0 0 24 24">${shapes}</svg>`;
-  const optimizationResult = await svgo.optimize(svg);
-  const optimizedSvg = optimizationResult.data;
-  const component = `/* eslint-disable */
+function getViewBox(attributes) {
+  for (let i = attributes.length - 1; i >= 0; i -= 1) {
+    if (attributes[i].name === "viewBox") {
+      return attributes[i].value;
+    }
+  }
+  return "0 0 24 24";
+}
+
+const template = (code, config, state) => `
+/* eslint-disable */
     import * as React from "react";
     import OrbitIcon from "../Icon";
 
-    export default function ${functionName}(props) {
+    export default function ${state.componentName}(props) {
       const { color, size, customColor, className } = props;
       return (
-        ${optimizedSvg.replace(
-          /<svg\b[^>]*>(.*?)<\/svg>/g,
-          `<OrbitIcon viewBox="0 0 24 24" size={size} color={color} customColor={customColor} className={className}>$1</OrbitIcon>`,
+        ${code.replace(
+          /<svg\b[^>]* viewBox="(\b[^"]*)".*>([\s\S]*?)<\/svg>/g,
+          `<OrbitIcon viewBox="$1" size={size} color={color} customColor={customColor} className={className}>$2</OrbitIcon>`,
         )}
       );
-    }
-`;
+    };`;
 
-  fs.writeFileSync(path.join(componentPath, outputComponentFileName), component);
-
-  const png = await svg2png(optimizedSvg, { width: 32, height: 32 });
-  fs.writeFileSync(path.join(pngPath, `${functionName}.png`), png);
+names.forEach(async ({ inputFileName, outputComponentFileName, functionName }) => {
+  const dom = await JSDOM.fromFile(inputFileName);
+  const content = dom.window.document.querySelector("svg");
+  svgr(
+    content.outerHTML,
+    { svgAttributes: { viewBox: getViewBox(content.attributes) }, template },
+    { componentName: functionName },
+  ).then(jsCode => {
+    fs.writeFileSync(path.join(componentPath, outputComponentFileName), jsCode);
+  });
 });
 
 const index = names
   .map(({ functionName }) => `export { default as ${functionName} } from "./${functionName}";\n`)
   .join("");
 fs.writeFileSync(path.join(componentPath, "index.js"), index);
-
-const iconsIndex = names
-  .map(
-    ({ functionName }) =>
-      `- ![${functionName}](${relativePngPath}/${functionName}.png?raw=true) ${functionName}\n`,
-  )
-  .join("");
-fs.writeFileSync(path.join(__dirname, "..", "src", "icons", "icons.md"), iconsIndex);

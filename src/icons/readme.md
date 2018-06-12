@@ -20,10 +20,6 @@ Every icon is just a simple piece of inline SVG, see [the code of one of them](.
 
 All props are passed to the `svg` element, so you can override its default `height` and `fill`. Eg. `<Airplane fill="red" height="100" />` to render a 100px red airplane. You can find [other attributes on MDN](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg), but these two will be probably the only ones you will use.
 
-## Included Icons
-
-See the generated [preview of all icons](./icons.md).
-
 ## Build Process
 
 In the `svg` folder, there are source SVG files as delivered by our designers. The build script (`config/build.js`) that executes when you run `yarn build` processes all of them, optimizes and transforms them into JS React components. This script also generates previews in the `png` folder. Those JS files are then transpiled with Babel and copied to the `lib` folder.

@@ -8,10 +8,12 @@ import { withKnobs, select, text } from "@storybook/addon-knobs/react";
 
 import * as Icons from "../icons";
 import { iconSizes, iconColors } from "../Icon";
+import IconList from "./IconList";
 
 setAddon(chaptersAddon);
 
 const options = {
+  showSource: false,
   allowSourceToggling: false,
   allowPropTablesToggling: false,
 };
@@ -62,4 +64,20 @@ storiesOf("Icon", module)
         },
       ],
     };
-  });
+  })
+  .addWithChapters("List of all icons", () => ({
+    info:
+      "We use icons to draw attention to specific actions in our products. Visit Orbit.Kiwi for more detailed guidelines.",
+    chapters: [
+      {
+        sections: [
+          {
+            sectionFn: () => <IconList />,
+            options: {
+              showSource: false,
+            },
+          },
+        ],
+      },
+    ],
+  }));
