@@ -1,0 +1,20 @@
+// @flow
+import { defaultTokens } from "@kiwicom/orbit-design-tokens";
+
+export type Props = {|
+  +size?: "small" | "normal",
+  +name?: string,
+  +label?: string,
+  +children?: string,
+  +placeholder?: string,
+  +help?: React$Node,
+  +error?: React$Node,
+  +disabled?: boolean,
+  +maxLength?: number,
+  +onChange?: (ev: SyntheticEvent<HTMLInputElement>) => void,
+  +onFocus?: (ev: SyntheticEvent<HTMLInputElement>) => void,
+  +onBlur?: (ev: SyntheticEvent<HTMLInputElement>) => void,
+  +theme?: typeof defaultTokens,
+|};
+
+declare export default React$ComponentType<Props>;
