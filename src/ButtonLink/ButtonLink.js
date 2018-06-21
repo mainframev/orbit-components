@@ -22,7 +22,7 @@ const IconContainer = styled(({ tokens, sizeIcon, type, onlyIcon, ...props }) =>
   }
 `;
 
-const StyledButtonLink = styled(
+export const StyledButtonLink = styled(
   ({
     tokens,
     onlyIcon,

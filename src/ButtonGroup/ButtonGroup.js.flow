@@ -1,0 +1,13 @@
+// @flow
+import { defaultTokens } from "@kiwicom/orbit-design-tokens";
+
+import ButtonLink from "../ButtonLink/ButtonLink";
+import Button from "../Button/Button";
+
+export type Props = {|
+  +children: Array<React$Element<typeof Button> | React$Element<typeof ButtonLink>>,
+  +connected?: boolean,
+  +theme?: typeof defaultTokens,
+|};
+
+declare export default React$ComponentType<Props>;

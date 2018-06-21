@@ -25,7 +25,7 @@ const IconContainer = styled(({ className, children }) => (
   }
 `;
 
-const StyledButton = styled(
+export const StyledButton = styled(
   ({
     tokens,
     theme,

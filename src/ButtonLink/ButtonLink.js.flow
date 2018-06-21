@@ -20,4 +20,22 @@ export type Props = {|
   +transparent?: boolean,
 |};
 
+type styledButtonLink = {
+  component?: string | React$Node,
+  children?: React$Node,
+  href?: string,
+  bordered?: boolean,
+  disabled?: boolean,
+  block?: boolean,
+  type?: Type,
+  size?: Size,
+  width?: number,
+  icon?: React$Node,
+  transparent?: boolean,
+  onlyIcon?: boolean,
+  tokens?: { [key: string]: string | number },
+  theme?: typeof defaultTokens,
+};
+declare export var StyledButtonLink: React$ComponentType<styledButtonLink>;
+
 declare export default React$ComponentType<Props>;

@@ -29,4 +29,21 @@ export type Props = {|
   +theme?: typeof defaultTokens,
 |};
 
+type styledButton = {
+  component?: string | React$Node,
+  children?: React$Node,
+  href?: string,
+  bordered?: boolean,
+  disabled?: boolean,
+  block?: boolean,
+  type?: Type,
+  size?: Size,
+  width?: number,
+  icon?: React$Node,
+  onlyIcon?: boolean,
+  tokens?: { [key: string]: string | number },
+  theme?: typeof defaultTokens,
+};
+declare export var StyledButton: React$ComponentType<styledButton>;
+
 declare export default React$ComponentType<Props>;
