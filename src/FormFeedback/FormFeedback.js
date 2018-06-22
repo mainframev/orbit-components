@@ -23,6 +23,12 @@ const StyledFormFeedback = styled(({ theme, type, ...props }) => <div {...props}
     text-decoration: underline;
     cursor: pointer;
   }
+
+  & strong,
+  & b {
+    font-weight: ${({ theme }) => theme.fontWeightMedium};
+    color: ${({ theme }) => theme.paletteInkNormal};
+  }
 `;
 
 const FormFeedback = (props: Props) => {
