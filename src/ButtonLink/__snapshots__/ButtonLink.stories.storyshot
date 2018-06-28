@@ -99,7 +99,7 @@ exports[`Storyshots ButtonLink Default 1`] = `
           }
         >
           <a
-            className="ButtonLink__StyledButtonLink-eyUiPe gIxBvN"
+            className="ButtonLink__StyledButtonLink-eyUiPe ifcSsX"
             href="https://kiwi.com"
             onClick={undefined}
             size="normal"
@@ -351,7 +351,7 @@ exports[`Storyshots ButtonLink Playground 1`] = `
           }
         >
           <button
-            className="ButtonLink__StyledButtonLink-eyUiPe edfPGl"
+            className="ButtonLink__StyledButtonLink-eyUiPe dWAfUJ"
             disabled={false}
             href=""
             onClick={[Function]}
@@ -382,6 +382,29 @@ exports[`Storyshots ButtonLink Playground 1`] = `
               </svg>
             </div>
             ButtonLink
+            <div
+              className="ButtonLink__IconContainerRight-hJSKvX bsHWVt ButtonLink__IconContainer-flENJD fktYwF"
+              size="large"
+            >
+              <svg
+                className={undefined}
+                fill="currentColor"
+                height="24px"
+                preserveAspectRatio="xMidYMid meet"
+                style={
+                  Object {
+                    "color": undefined,
+                    "verticalAlign": "middle",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width="24px"
+              >
+                <path
+                  d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </div>
           </button>
         </div>
         <div>
@@ -599,7 +622,7 @@ exports[`Storyshots ButtonLink Playground 1`] = `
                           <span
                             style={Object {}}
                           >
-                            icon
+                            iconLeft
                           </span>
                           <span>
                             =
@@ -616,6 +639,37 @@ exports[`Storyshots ButtonLink Playground 1`] = `
                                   }
                                 >
                                   &lt;Airplane /&gt;
+                                </span>
+                                }
+                              </span>
+                            </span>
+                          </span>
+                        </span>
+                        <span>
+                          <span>
+                            <br />
+                              
+                          </span>
+                          <span
+                            style={Object {}}
+                          >
+                            iconRight
+                          </span>
+                          <span>
+                            =
+                            <span
+                              style={Object {}}
+                            >
+                              <span>
+                                {
+                                <span
+                                  style={
+                                    Object {
+                                      "color": "#666",
+                                    }
+                                  }
+                                >
+                                  &lt;ChevronDown /&gt;
                                 </span>
                                 }
                               </span>
@@ -814,7 +868,7 @@ exports[`Storyshots ButtonLink Secondary 1`] = `
           }
         >
           <a
-            className="ButtonLink__StyledButtonLink-eyUiPe bhQaph"
+            className="ButtonLink__StyledButtonLink-eyUiPe fWfAoh"
             href="https://kiwi.com"
             onClick={undefined}
             size="normal"

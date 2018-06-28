@@ -13,7 +13,8 @@ import { TYPE_OPTIONS, SIZE_OPTIONS } from "./consts";
 
 setAddon(chaptersAddon);
 
-const getIcons = defaultIcon => select("Icon", [undefined, ...Object.keys(Icons)], defaultIcon);
+const getIcons = (name, defaultIcon) =>
+  select(name, [undefined, ...Object.keys(Icons)], defaultIcon);
 const getIcon = source => Icons[source];
 
 storiesOf("Button", module)
@@ -69,7 +70,8 @@ storiesOf("Button", module)
     const block = boolean("Block", false);
     const type = select("Type", [TYPE_OPTIONS.PRIMARY, TYPE_OPTIONS.SECONDARY], "primary");
     const size = select("Size", Object.values(SIZE_OPTIONS), "small");
-    const Icon = getIcon(getIcons("PlusCircle"));
+    const IconLeft = getIcon(getIcons("iconLeft", "PlusCircle"));
+    const IconRight = getIcon(getIcons("iconRight", "ChevronDown"));
 
     return {
       info:
@@ -84,7 +86,20 @@ storiesOf("Button", module)
                   block={block}
                   type={type}
                   size={size}
-                  icon={Icon && <Icon />}
+                  iconLeft={IconLeft && <IconLeft />}
+                >
+                  {title}
+                </Button>
+              ),
+            },
+            {
+              sectionFn: () => (
+                <Button
+                  onClick={action("clicked")}
+                  block={block}
+                  type={type}
+                  size={size}
+                  iconRight={IconRight && <IconRight />}
                 >
                   {title}
                 </Button>
@@ -105,7 +120,7 @@ storiesOf("Button", module)
               <Button
                 onClick={action("clicked")}
                 type="facebook"
-                icon={<Icons.Facebook />}
+                iconLeft={<Icons.Facebook />}
                 bordered
               >
                 Sign in with Facebook
@@ -114,7 +129,12 @@ storiesOf("Button", module)
           },
           {
             sectionFn: () => (
-              <Button onClick={action("clicked")} type="google" icon={<Icons.Google />} bordered>
+              <Button
+                onClick={action("clicked")}
+                type="google"
+                iconLeft={<Icons.Google />}
+                bordered
+              >
                 Sign in with Google
               </Button>
             ),
@@ -125,7 +145,7 @@ storiesOf("Button", module)
   }))
   .addWithChapters("Status buttons", () => {
     const title = text("Title", "Button");
-    const Icon = getIcon(getIcons("CloseCircle"));
+    const Icon = getIcon(getIcons("iconLeft", "CloseCircle"));
 
     return {
       info:
@@ -139,7 +159,7 @@ storiesOf("Button", module)
                   onClick={action("clicked")}
                   type="info"
                   size="small"
-                  icon={Icon && <Icon />}
+                  iconLeft={Icon && <Icon />}
                 >
                   {title}
                 </Button>
@@ -151,7 +171,7 @@ storiesOf("Button", module)
                   onClick={action("clicked")}
                   type="success"
                   size="small"
-                  icon={Icon && <Icon />}
+                  iconLeft={Icon && <Icon />}
                 >
                   {title}
                 </Button>
@@ -163,7 +183,7 @@ storiesOf("Button", module)
                   onClick={action("clicked")}
                   type="warning"
                   size="small"
-                  icon={Icon && <Icon />}
+                  iconLeft={Icon && <Icon />}
                 >
                   {title}
                 </Button>
@@ -175,7 +195,7 @@ storiesOf("Button", module)
                   onClick={action("clicked")}
                   type="critical"
                   size="small"
-                  icon={Icon && <Icon />}
+                  iconLeft={Icon && <Icon />}
                 >
                   {title}
                 </Button>
@@ -204,7 +224,7 @@ storiesOf("Button", module)
                   bordered={bordered}
                   type="critical"
                   size={size}
-                  icon={<Icons.Remove />}
+                  iconLeft={<Icons.Remove />}
                 >
                   {title}
                 </Button>
@@ -237,7 +257,7 @@ storiesOf("Button", module)
                   size={size}
                   disabled={disabled}
                   bordered
-                  icon={<Icons.Airplane />}
+                  iconLeft={<Icons.Airplane />}
                 >
                   {title}
                 </Button>
@@ -259,7 +279,8 @@ storiesOf("Button", module)
     const size = select("Size", Object.values(SIZE_OPTIONS), "normal");
     const width = number("Width", 0);
     const bordered = boolean("Bordered", false);
-    const Icon = getIcon(getIcons("Airplane"));
+    const IconLeft = getIcon(getIcons("iconLeft", "Airplane"));
+    const IconRight = getIcon(getIcons("iconRight", "ChevronDown"));
 
     return {
       title: "Playground button",
@@ -279,7 +300,8 @@ storiesOf("Button", module)
                   bordered={bordered}
                   type={type}
                   size={size}
-                  icon={Icon && <Icon />}
+                  iconLeft={IconLeft && <IconLeft />}
+                  iconRight={IconRight && <IconRight />}
                   width={width}
                 >
                   {title}

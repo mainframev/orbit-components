@@ -13,15 +13,9 @@ import { TYPES, SIZES } from "./consts";
 
 setAddon(chaptersAddon);
 
-const getIcons = defaultIcon => select("Icon", [undefined, ...Object.keys(Icons)], defaultIcon);
+const getIcons = (name, defaultIcon) =>
+  select(name, [undefined, ...Object.keys(Icons)], defaultIcon);
 const getIcon = source => Icons[source];
-
-const options = {
-  showSource: true,
-  allowSourceToggling: false,
-  showPropTables: false,
-  allowPropTablesToggling: false,
-};
 
 storiesOf("ButtonLink", module)
   .addDecorator(withKnobs)
@@ -38,7 +32,6 @@ storiesOf("ButtonLink", module)
         sections: [
           {
             sectionFn: () => <ButtonLink href="https://kiwi.com">ButtonLink</ButtonLink>,
-            options,
           },
         ],
       },
@@ -56,7 +49,6 @@ storiesOf("ButtonLink", module)
                 ButtonLink
               </ButtonLink>
             ),
-            options,
           },
         ],
       },
@@ -69,7 +61,8 @@ storiesOf("ButtonLink", module)
     const type = select("Type", Object.values(TYPES), TYPES.SECONDARY);
     const size = select("Size", Object.values(SIZES), SIZES.LARGE);
     const width = number("Width", 0);
-    const Icon = getIcon(getIcons("Airplane"));
+    const IconLeft = getIcon(getIcons("IconLeft", "Airplane"));
+    const IconRight = getIcon(getIcons("IconRight", "ChevronDown"));
     const href = text("Href", "");
     const external = boolean("External", false);
     const transparent = boolean("Transparent", false);
@@ -88,7 +81,8 @@ storiesOf("ButtonLink", module)
                   type={type}
                   size={size}
                   href={href}
-                  icon={Icon && <Icon />}
+                  iconLeft={IconLeft && <IconLeft />}
+                  iconRight={IconRight && <IconRight />}
                   width={width}
                   external={external}
                   onClick={action("clicked")}
@@ -97,7 +91,6 @@ storiesOf("ButtonLink", module)
                   {title}
                 </ButtonLink>
               ),
-              options,
             },
           ],
         },
