@@ -7,6 +7,8 @@ import typeof ButtonLinkType from "./ButtonLink";
 import typeof CheckboxType from "./Checkbox";
 import typeof CarrierLogoType from "./CarrierLogo";
 import typeof HeadingType from "./Heading";
+import typeof ListType from "./List";
+import typeof ListItemType from "./List/ListItem";
 import typeof TextType from "./Text";
 import typeof TextLinkType from "./TextLink";
 import typeof ThemedSampleType from "./Theming/ThemedSample";
@@ -32,6 +34,9 @@ declare export var Button: ButtonType;
 declare export var ButtonLink: ButtonLinkType;
 declare export var CarrierLogo: CarrierLogoType;
 declare export var Checkbox: CheckboxType;
+
+declare export var List: ListType;
+declare export var ListItem: ListItemType;
 
 declare export var Card: CardType;
 declare export var CardHeader: CardHeaderType;

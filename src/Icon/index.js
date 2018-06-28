@@ -14,6 +14,10 @@ export const iconColors = {
   primary: tokens.colorIconPrimary,
   secondary: tokens.colorIconSecondary,
   terciary: tokens.colorIconTerciary,
+  blue: tokens.paletteBlueNormal,
+  green: tokens.paletteGreenNormal,
+  orange: tokens.paletteOrangeNormal,
+  red: tokens.paletteRedNormal,
 };
 
 type Props = {
