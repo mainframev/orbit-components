@@ -14,6 +14,7 @@ export { default as Typography } from "./_deprecated/Typography";
 export { Icons };
 
 export { default as Alert } from "./Alert";
+export { default as Badge } from "./Badge";
 export { default as Button } from "./Button";
 export { default as ButtonLink } from "./ButtonLink";
 export { default as CarrierLogo } from "./CarrierLogo";
