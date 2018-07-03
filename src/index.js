@@ -32,5 +32,6 @@ export { default as TextLink } from "./TextLink";
 export { default as ThemeProvider } from "./Theming/ThemeProvider";
 export { default as Radio } from "./Radio";
 export { default as Select } from "./Select";
+export { default as ServiceLogo } from "./ServiceLogo";
 export { withTheme } from "theming";
 export { default as defaultTheme } from "@kiwicom/orbit-design-tokens";

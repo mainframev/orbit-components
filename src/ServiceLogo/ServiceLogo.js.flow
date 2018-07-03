@@ -1,0 +1,27 @@
+// @flow
+import defaultTokens from "@kiwicom/orbit-design-tokens";
+
+export type Name =
+  | "AirHelp"
+  | "Amex"
+  | "AxaAssistance"
+  | "DinersClub"
+  | "JCB"
+  | "Maestro"
+  | "MasterCard"
+  | "MIR"
+  | "NewYorkTimes"
+  | "NortonSecured"
+  | "TravelPulse"
+  | "Visa"
+  | "Zooz";
+
+export type Size = "small" | "normal" | "large";
+
+export type Props = {|
+  +name: Name,
+  +size?: Size,
+  +theme?: typeof defaultTokens,
+|};
+
+declare export default React$ComponentType<Props>;

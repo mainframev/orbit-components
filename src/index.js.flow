@@ -12,6 +12,7 @@ import typeof TextLinkType from "./TextLink";
 import typeof ThemeProviderType from "./Theming/ThemeProvider";
 import typeof RadioType from "./Radio";
 import typeof SelectType from "./Select";
+import typeof ServiceLogoType from "./ServiceLogo";
 import typeof CardType from "./Card";
 import typeof CardHeaderType from "./Card/CardHeader";
 import typeof CardContentType from "./Card/CardContent";
@@ -44,6 +45,7 @@ declare export var TextLink: TextLinkType;
 declare export var ThemeProvider: ThemeProviderType;
 declare export var Radio: RadioType;
 declare export var Select: SelectType;
+declare export var ServiceLogo: ServiceLogoType;
 
 declare export var withTheme: any;
 declare export var defaultTheme: any;
