@@ -6,6 +6,18 @@ import styled from "styled-components";
 import TYPE_OPTIONS from "./consts";
 import type { Props } from "./TextLink";
 
+const IconContainer = styled(({ children, className }) => (
+  <div className={className}>{children}</div>
+))`
+  color: ${({ tokens, type }) => tokens.colorTextLink[type]};
+  transition: color ${({ theme }) => theme.durationFast} ease-in-out;
+
+  & svg {
+    height: 16px;
+    width: 16px;
+  }
+`;
+
 export const StyledTextLink = styled(({ tokens, theme, type, ...props }) => (
   <a {...props}>{props.children}</a>
 ))`
@@ -16,6 +28,8 @@ export const StyledTextLink = styled(({ tokens, theme, type, ...props }) => (
           ? theme.textDecorationTextLinkSecondary
           : theme.textDecorationTextLinkPrimary};
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
       transition: color ${({ theme }) => theme.durationFast} ease-in-out;
     }
     &:hover {
@@ -27,6 +41,12 @@ export const StyledTextLink = styled(({ tokens, theme, type, ...props }) => (
         type === [TYPE_OPTIONS.SECONDARY]
           ? theme.colorTextLinkSecondaryHover
           : theme.colorTextLinkPrimaryHover};
+      & ${IconContainer} {
+        color: ${({ theme, type }) =>
+          type === [TYPE_OPTIONS.SECONDARY]
+            ? theme.colorTextLinkSecondaryHover
+            : theme.colorTextLinkPrimaryHover};
+      }
     }
     &:focus {
       outline-width: 3px;
@@ -41,6 +61,7 @@ const TextLink = (props: Props) => {
     external = false,
     theme = defaultTokens,
     rel,
+    icon,
     onClick,
   } = props;
   const tokens = {
@@ -61,6 +82,11 @@ const TextLink = (props: Props) => {
       onClick={onClick}
     >
       {children}
+      {icon && (
+        <IconContainer theme={theme} type={type} tokens={tokens}>
+          {icon}
+        </IconContainer>
+      )}
     </StyledTextLink>
   );
 };
